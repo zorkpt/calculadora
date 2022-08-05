@@ -1,18 +1,29 @@
 function operate(a,b,operator) {
-    if(operator === "sum") {
-        return sum(a,b);
-    } else if(operator === "sub") {
-        return subtract(a,b);
-    }else if( operator === "multi") {
-        return multiply(a,b);
-    } else if (operator === "divide") { 
-        return divide(a,b);
-    }else if(operator === "igual") {
-        return a;
+    switch(operator) {
+        case "sum":
+          return a+b;
+          break;
+        case "sub":
+            return a-b;
+            break;
+        case "multi":
+            return a*b;
+            break;
+        case "divide":
+            if(b===0){
+                operAnterior="";
+                numeroFinal=0;
+                alert("Erro. Não Podes dividir por 0.");
+                 return 0;
+            }
+            return a/b;
+        case "igual":
+            return a;
     }
 }
+
+//FUNÇÃO PARA REINICIAR AS VARS
 function resetAll() {
-    // Program.restart();
     numeroFinal = 0;
     numero1 = 0;
     numero2 = 0;
@@ -21,35 +32,6 @@ function resetAll() {
     display.innerText = 0;
     opAnterior.innerText = 0;
 }
-
-
-function sum(a,b ) {
- const result = a+b;
- return result;
-}
-
-function subtract(a,b) {
-    const result = a-b;
-    return result;
-}
-
-function multiply(a,b) {
-    const result = a*b;
-    return result;
-}
-
-function divide(a,b) {
-    if(b===0){
-        //resetAll();
-        operAnterior="";
-        numeroFinal=0;
-        alert("Erro. Não Podes dividir por 0.");
-         return 0;
-    }
-    const result = a/b;
-    return result;
-}
-
 
 // consts para onde imprimir os numeros
 const display = document.getElementById("resultado");
@@ -96,7 +78,7 @@ const btSoma = document.getElementById("somar")
 const btSub = document.getElementById("sub")
 const btIgual = document.getElementById("igual")
 const btClear = document.getElementById("clear");
-
+const btPonto = document.getElementById("ponto");
 
 
 // EVENT LISTENERS DOS BOTOES
@@ -110,6 +92,7 @@ bt7.addEventListener("click",function() { add(7); });
 bt8.addEventListener("click",function() { add(8); });
 bt9.addEventListener("click",function() { add(9); });
 bt0.addEventListener("click",function() { add(0); });
+btPonto.addEventListener("click", function() {});
 btSoma.addEventListener("click",function() { calcular("sum")});
 btSub.addEventListener("click",function() { calcular("sub")});
 btMulti.addEventListener("click",function() { calcular("multi")});
